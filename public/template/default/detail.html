@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-cmn-Hans">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
+<title>{$list.article.title} - {$basic.name}</title>
+<link rel="icon" href="__IMG__/favicon.ico" type="image/png">
+{load href="__CSS__/bootstrap.css" /}
+{load href="__ICO__/icon-style.css" /}
+{load href="__CSS__/style.css" /}
+</head>
+<body>
+{include file="default/public/header" /}
+<section class="blog_area single-post-area">
+          <div class="container">
+    <div class="row">
+              <div class="col-lg-8">
+        <div class="main_blog_details section-top-border"> <img class="img-fluid" src="{$list.article.img}" alt=""> <a href="#">
+          <h4>{$list.article.title}</h4>
+          </a>
+                  <div class="user_details">
+            <div class="float-left"> {volist name="$list.article.tag" id="tag"} <a href="{:url('/search/tag/'.$tag)}">{$tag}</a> {/volist} </div>
+            <div class="float-right">
+                      <div class="media">
+                <div class="media-body">
+                          <a>{$basic.author}</a>
+                          <p>{$list.article.time}</p>
+                        </div>
+                <div class="d-flex"> <img src="{$basic.author_img}" /> </div>
+              </div>
+                    </div>
+          </div>
+                  {$list.article.content|raw}
+                  <div class="news_d_footer"> <a title="文字：{$list.article.number}"><i class="icon zhongwen"></i>{$list.article.number}</a> <a class="justify-content-center ml-auto" href="#comment"><i class="icon liaotian"></i>{$list.number} 条评论</a>
+            <div class="news_socail ml-auto"> <a href="#"><i class="icon word"></i></a> <a href="#"><i class="icon erweima"></i></a></div>
+          </div>
+                </div>
+        <div class="navigation-area">
+                  <div class="row">
+            <div class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center"> {eq name="$list.link.up" value=""}
+                      <div class="thumb"> <a href="#"><img class="img-fluid" src="/storage/images/noimg_60.gif" alt=""></a> </div>
+                      <div class="arrow"> <a href="#"><span class="lnr text-white lnr-arrow-left"></span></a> </div>
+                      <div class="detials">
+                <p>没有</p>
+                <a href="#">
+                        <h4>上一篇</h4>
+                        </a> </div>
+                      {else /}
+                      <div class="thumb"> <a href="{:url('/detail/'.$list.link.up.url)}"><img class="img-fluid" src="{$list.link.up.simg|default='/storage/images/noimg_60.gif'}"></a> </div>
+                      <div class="arrow"> <a href="{:url('/detail/'.$list.link.up.url)}"><span class="lnr text-white lnr-arrow-left"></span></a> </div>
+                      <div class="detials">
+                <p>上一篇</p>
+                <a href="{:url('/detail/'.$list.link.up.url)}">
+                        <h4>{$list.link.up.title|msubstr=0,15}</h4>
+                        </a> </div>
+                      {/eq} </div>
+            <div class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center"> {eq name="$list.link.down" value=""}
+                      <div class="detials">
+                <p>没有</p>
+                <a >
+                        <h4>下一篇</h4>
+                        </a> </div>
+                      <div class="arrow"> <a><span class="lnr text-white lnr-arrow-right"></span></a> </div>
+                      <div class="thumb"> <a><img class="img-fluid" src="/storage/images/noimg_60.gif" alt=""></a> </div>
+                      {else /}
+                      <div class="detials">
+                <p>下一篇</p>
+                <a href="{:url('/detail/'.$list.link.down.url)}">
+                        <h4>{$list.link.down.title|msubstr=0,15}</h4>
+                        </a> </div>
+                      <div class="arrow"> <a href="{:url('/detail/'.$list.link.down.url)}"><span class="lnr text-white lnr-arrow-right"></span></a> </div>
+                      <div class="thumb"> <a href="{:url('/detail/'.$list.link.down.url)}"><img class="img-fluid" src="{$list.link.down.simg|default='/storage/images/noimg_60.gif'}" alt=""></a> </div>
+                      {/eq} </div>
+          </div>
+                </div>
+                
+         <div class="comment-list">
+         <h5 id="comment">共 <span>{$list.number}</span> 条评论</h5>
+         {volist name="$list.comment" id="comment"}
+        <div class="comment-info">
+        <div class="msg">
+        <div class="link" id="{$comment.id}">#{$comment.id}</div>
+        
+        {eq name="comment.url" value=""} <img src="{$comment.portrait}"> {else /} <a href="{$comment.url}" target="_blank" rel="nofollow"><img src="{$comment.portrait}"></a> {/eq}
+        
+       	<div class="umsg">
+				<div class="u-info">
+				<a>{$comment.name}</a>
+					<div class="more">
+					<span><i class="icon dingwei"></i>{$comment.ip}</span>
+					<span><i class="icon shijian"></i>{$comment.time} </span>
+					</div>
+				</div>
+      	</div>
+       		<div class="comment">{$comment.content}</div>
+       	</div>	
+       	{eq name="comment.star" value="1"}
+        <div class="reply-info">
+        <div class="left-in">
+        <img src="{$basic.author_img}">
+       	<div class="umsg">
+				<div class="u-info">
+				<a>{$basic.author}</a>
+				<div class="more">
+				<span><i class="icon shijian"></i>{$comment.replytime}</span>
+				</div>
+				</div>
+      	</div>
+       		<div class="comment">{$comment.reply}</div>
+       		</div>
+         </div>
+         {/eq}
+        </div>
+        {/volist}
+
+         </div>   
+ 
+        <div class="comment-form" id="go">
+                  <h4>评论：</h4>
+                  <form id="form">
+            <input name="aid" type="hidden" value="{$list.article.id}">
+            <input name="up" type="hidden" value="0" id="up-id">
+            <input name="type" type="hidden" value="2" >
+            <div class="form-group form-inline">
+                      <div class="form-group col-lg-6 col-md-6 name">
+                <input type="text" class="form-control" id="name" name="name" placeholder="昵称" onfocus="this.placeholder = ''" onblur="this.placeholder = '请输入昵称[必填]'" value="{$Request.cookie.name}">
+              </div>
+                      <div class="form-group col-lg-6 col-md-6 email">
+                <input type="email" class="form-control" id="email" name="email" placeholder="邮箱" onfocus="this.placeholder = ''" onblur="this.placeholder = '请输入邮箱[必填]'"  value="{$Request.cookie.email}">
+              </div>
+                    </div>
+            <div class="form-group">
+                      <input type="text" class="form-control" id="subject" name="url" placeholder="网站" onfocus="this.placeholder = ''" onblur="this.placeholder = '请输入网址[选填]'"  value="{$Request.cookie.url}">
+                    </div>
+            <div class="form-group">
+                      <textarea class="form-control mb-10" rows="5" name="content" placeholder="说点什么吧？" onfocus="this.placeholder = ''" onblur="this.placeholder = '请输入您想说的话'" required></textarea>
+                    </div>
+            <a href="javascript:;" class="primary-btn submit_btn" id="send-data" >发送</a>
+          </form>
+                </div>
+      </div>
+              <div class="col-lg-4"> {include file="default/public/sidebar" /} </div>
+            </div>
+  </div>
+        </section>
+<nav class="blog-pagination justify-content-center d-flex"></nav>
+{include file="default/public/footer" /} 
+        {load href="__JS__/jquery-3.2.1.min.js" /}
+        {load href="__JS__/bootstrap.min.js" /}
+        {load href="__JS__/basic.js" /}
+        {load href="__LAYER__/layer.js" /}
+        {load href="__SYSTEM__/editor/third-party/SyntaxHighlighter/shCore.js" /}
+		{load href="__SYSTEM__/editor/third-party/SyntaxHighlighter/shCoreDefault.css" /} 
+		<script>
+		SyntaxHighlighter.all();
+	   </script>
+</body>
+</html>

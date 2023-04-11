@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="zh-cmn-Hans">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
+<title>相册 - {$basic.name}</title>
+<link rel="icon" href="__IMG__/favicon.ico" type="image/png">
+{load href="__CSS__/bootstrap.css" /}
+{load href="__ICO__/icon-style.css" /}
+{load href="__CSS__/style.css" /}
+</head>
+<body>
+{include file="default/public/header" /}
+<section class="blog_area">
+          <div class="container">
+          
+          
+              <div class="row">
+              <div class="col-lg-12">
+        		<div class="section-top-border">
+                  <div class="row gallery-item">
+                  {volist name="$list.album" id="album"}
+            	<div class="col-md-4"> 
+            	<a class="img-gal" href="{:url('/album/'.$album.pinyin)}">
+                <div class="single-gallery-image" style="background: url({$album.img|default='/storage/images/noimg.gif'});">
+                </div>
+                </a> 
+					<div class="a-info">
+					<a href="{:url('/album/'.$album.pinyin)}">{$album.name}</a>
+					<span><i class="icon chakan"></i> {$album.click}</span>
+					<div class="up"><i class="icon shijian"></i> {$album.time}</div>
+				  </div>
+              </div>
+				{/volist}
+
+          </div>
+                </div>
+      </div>
+            </div>
+          
+          
+ 
+       </div>
+        </section>
+<nav class="blog-pagination justify-content-center d-flex"></nav>
+{include file="default/public/footer" /} 
+        {load href="__JS__/jquery-3.2.1.min.js" /}
+        {load href="__JS__/bootstrap.min.js" /}
+        {load href="__JS__/basic.js" /}
+        {load href="__LAYER__/layer.js" /}
+</body>
+</html>

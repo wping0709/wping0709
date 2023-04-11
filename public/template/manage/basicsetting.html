@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>基本配置 - {$basic.name}</title>
+  <link rel="icon" href="/storage/images/favicon.ico" type="image/ico" />
+  {load href="__MCSS__/bootstrap.min.css" }
+  {load href="__MCSS__/materialdesignicons.min.css" }
+  {load href="__MCSS__/style.min.css" }
+  <style>
+    .filePic {
+      position: relative;
+      text-align: center
+    }
+
+    .filePic .inputPic {
+      cursor: pointer;
+      opacity: 0;
+      ilter: alpha(opacity=0);
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 9;
+      background: #f00;
+    }
+
+    .filePic img {
+      border-radius: 50%;
+      width: 100px;
+      height: 100px;
+    }
+
+    .filePic .uppic {
+      margin: 5px 0 0 0;
+      font-size: 12px;
+      color: #f13636;
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="lyear-layout-web">
+    <div class="lyear-layout-container">
+      {include file="/manage/public/sidebar" /}
+      {include file="/manage/public/header" /}
+      <!--页面主要内容-->
+      <main class="lyear-layout-content">
+
+        <div class="container-fluid">
+
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="card">
+                <ul class="nav nav-tabs page-tabs">
+                  <li class="active"> <a>基本配置</a> </li>
+                </ul>
+                <div class="tab-content">
+                  <div class="tab-pane active">
+
+                    <form name="edit-form" class="edit-form" method="post">
+
+                      <div class="form-group">
+                        <label for="web_site_title">网站名称</label>
+                        <input class="form-control" type="text" name="name" value="{$list.name}" placeholder="系统名称">
+                      </div>
+
+                      <div class="form-group">
+                        <label for="web_site_title">首页标题</label>
+                        <input class="form-control" type="text" name="title" value="{$basic.title}" placeholder="网站标题">
+                      </div>
+
+                      <div class="form-group">
+                        <label for="web_site_keywords">关键词</label>
+                        <input class="form-control" type="text" name="keywords" value="{$basic.keywords}"
+                          placeholder="请输入站点关键词">
+                      </div>
+                      <div class="form-group">
+                        <label for="web_site_description">站点描述</label>
+                        <textarea class="form-control" rows="2" name="description"
+                          placeholder="请输入站点描述">{$basic.description}</textarea>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="web_site_title">站长姓名</label>
+                        <input class="form-control" type="text" name="author" value="{$basic.author}"
+                          placeholder="网站站长">
+                      </div>
+
+
+                      <div class="form-group">
+                        <label for="web_site_logo">站长头像</label>
+                        <div class="input-group">
+                          <input type="text" class="form-control" name="author_img" id="img" placeholder="请上传站长头像"
+                            value="{$basic.author_img}">
+                          <div class="input-group-btn">
+                            <div class="filePic">
+                              <input name="upfile" type="file" class="inputPic" allowexts="gif,jpeg,jpg,png,bmp"
+                                accept="image/*" id="upload" />
+                              <button class="btn btn-default">上传图片</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="web_site_title">系统网址</label>
+                        <input class="form-control" type="text" name="url" value="{$basic.url}"
+                          placeholder="系统网址,不要带http://">
+                      </div>
+
+                      <div class="form-group">
+                        <label for="web_site_title">系统电话</label>
+                        <input class="form-control" type="text" name="tel" value="{$basic.tel}" placeholder="系统电话">
+                      </div>
+
+                      <div class="form-group">
+                        <label for="web_site_title">备案编号</label>
+                        <input class="form-control" type="text" name="icp" value="{$basic.icp}" placeholder="系统备案号">
+                      </div>
+
+                      <div class="form-group">
+                        <label for="web_site_description">版权信息</label>
+                        <textarea class="form-control" rows="1" name="copyright"
+                          placeholder="请输入站点版权信息">{$basic.copyright}</textarea>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="web_site_description">统计代码</label>
+                        <textarea class="form-control" rows="2" name="statistics"
+                          placeholder="请输入站点统计代码">{$basic.statistics}</textarea>
+                      </div>
+
+                      <div class="form-group">
+                        <label class="btn-block" for="web_site_status">系统开关</label>
+                        <label class="lyear-switch switch-solid switch-primary">
+                          <input name="status" type="checkbox" value="1" {eq name='$basic.status' value='1'
+                            }checked{/eq} />
+                          <span></span>
+                        </label>
+                        <small class="help-block">系统关闭后将不能访问，后台可正常登录</small>
+                      </div>
+                      <div class="form-group">
+                        <button type="button" class="btn btn-primary m-r-5" id="save-data">确 定</button>
+                        <button type="button" class="btn btn-default"
+                          onclick="javascript:history.back(-1);return false;">返 回</button>
+                      </div>
+                    </form>
+
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </main>
+      <!--End 页面主要内容-->
+    </div>
+  </div>
+
+  {load href="__MJS__/jquery.min.js" }
+  {load href="__MJS__/bootstrap.min.js" }
+  {load href="__MJS__/perfect-scrollbar.min.js" }
+  {load href="__MJS__/main.min.js" }
+  {load href="__MJS__/operation.ajax.js" }
+  {load href="__LAYER__/layer.js" /}
+  {load href="__MJS__/jquery.cookie.js" /}
+  {load href="__MJS__/set.systheme.js" /}
+  <script>
+    $(function () {
+      $(".inputPic").click(function () {
+        $(".inputPic").on("change", function () {
+
+
+          var msg = layer.msg('上传中...', { icon: 16, shade: 0.01 });
+          //------------------------------
+          var formData = new FormData($('form')[0]);
+
+          //获取表单FILE名称
+          formData.append('file', $('input[type=file]').attr('name'));
+
+          $.ajax({
+            url: '/manage/data/type/ajaxportrait',
+            type: 'POST',
+            dataType: 'json',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (ReturnData) {
+              if (ReturnData.status === 1) {
+                $("#img").val(ReturnData.url);
+                setTimeout(function () {
+                  var msg = layer.msg(ReturnData.msg, { icon: 1 });
+                }, 500)
+              } else {
+                alert(ReturnData.msg);
+              }
+              setTimeout(function () {
+                layer.close(msg);
+              }, 10000)
+            },
+            error: function () {
+              alert("数据加载失败！");
+            }
+          });
+
+          //-----------------------------
+        });
+      });
+
+
+    });
+
+  </script>
+
+</body>
+
+</html>

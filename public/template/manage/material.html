@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>素材列表 - {$basic.name}</title>
+  <link rel="icon" href="/storage/images/favicon.ico" type="image/ico" />
+  {load href="__MCSS__/bootstrap.min.css" }
+  {load href="__MCSS__/materialdesignicons.min.css" }
+  {load href="__MCSS__/style.min.css" }
+  {load href="__MCSS__/style.custom.css" }
+
+  <!--日期选择插件-->
+  {load href="__MJS__/bootstrap-datepicker/bootstrap-datepicker3.min.css" }
+</head>
+
+<body>
+  <div class="lyear-layout-web">
+    <div class="lyear-layout-container"> {include file="/manage/public/sidebar" /}
+      {include file="/manage/public/header" /}
+
+      <!--页面主要内容-->
+      <main class="lyear-layout-content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="card">
+                <div class="card-toolbar clearfix">
+                  <form method="get" role="form">
+
+                    <div class="pull-right search-bar">
+                      <div class="input-group">
+                        <div class="input-group-btn">
+
+                          <button class="btn btn-default dropdown-toggle" id="search-btn" data-toggle="dropdown"
+                            type="button" aria-haspopup="true" aria-expanded="false"> 搜索 </button>
+
+                        </div>
+                        <input type="text" class="form-control" name="keyword" placeholder="标题"
+                          value="{$Request.param.keyword}">
+                      </div>
+                    </div>
+                    <div class="toolbar-btn-action">
+                      <a class="btn btn-primary m-r-5 operation" url="{:Url('/manage/addmaterial')}" imp="newpage"
+                        size="500,400" title="新增数据"><i class="mdi mdi-plus"></i> 新增</a>
+                      <a class="btn btn-danger operation" imp="moredelete"><i class="mdi mdi-window-close"></i> 删除</a>
+                    </div>
+
+
+                    <div class="data-select">
+                      <div class="col-lg-8">
+                        <div class="btn-group">
+                          <a class="btn btn-default" onClick="GetUrlPara()"><i class="mdi mdi-replay"></i></a>
+                          <button class="btn btn-default"><i class="mdi mdi-magnify"></i></button>
+                          <div class="btn-group">
+                            <button id="btnGroupDrop1" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                              aria-haspopup="true" aria-expanded="false">
+                              <i class="mdi mdi-arrow-down"></i> <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li><a href="#"><i class="mdi mdi-file-excel"></i> Excel</a></li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+
+
+
+
+                      <div class="col-xs-2">
+                        <select class="form-control" name="type" size="1">
+                          <option value="">选择类型</option>
+                          <option value="1" {eq name="$Request.param.type" value="1" }selected{/eq}>头像</option>
+                          <option value="2" {eq name="$Request.param.type" value="2" }selected{/eq}>配图</option>
+                          <option value="3" {eq name="$Request.param.type" value="3" }selected{/eq}>其他</option>
+                        </select>
+                      </div>
+
+
+                      <div class="col-xs-2">
+                        <select class="form-control" name="status" size="1">
+                          <option value="">选择状态</option>
+                          <option value="1" {eq name="$Request.param.status" value="1" }selected{/eq}>显示</option>
+                          <option value="0" {eq name="$Request.param.status" value="0" }selected{/eq}>隐藏</option>
+                        </select>
+                      </div>
+
+
+
+
+                      <div class="clear"></div>
+                    </div>
+
+                  </form>
+
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                      <thead>
+                        <tr>
+                          <th> <label class="lyear-checkbox checkbox-primary">
+                              <input type="checkbox" id="check-all">
+                              <span></span></label>
+
+                          </th>
+                          <th>类型</th>
+                          <th>名称</th>
+                          <th>状态</th>
+                          <th>时间</th>
+                          <th>操作</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+
+                        {volist name="list.material" id="material"}
+                        <tr>
+                          <td><label class="lyear-checkbox checkbox-primary">
+                              <input type="checkbox" name="ids[]" value="{$material.id}">
+                              <span>{$material.id}</span> </label></td>
+                          <td><span class="label label-info">{$material.type}</span></td>
+                          <td><a class="btn btn-xs btn-default operation"
+                              url="{:url('/manage/materialview/id/'.$material.id)}" imp="newpage" size="450,360"
+                              title="预览内容" data-toggle="tooltip">{$material.imgname}</a></td>
+
+                          <td><label class="lyear-switch switch-solid switch-primary">
+                              <input class="Set_state" name="state" type="checkbox" data-id="{$material.id}" value="1"
+                                {eq name='$material.status' value='1' }checked{/eq}>
+                              <span></span> </label>
+                          </td>
+
+                          <td>{$material.time|date='Y-m-d H:i'}</td>
+                          <td>
+                            <div class="btn-group">
+                              <a class="btn btn-xs btn-default operation" imp="delete" data-id="{$material.id}"
+                                title="删除" data-toggle="tooltip"><i class="mdi mdi-window-close"></i></a>
+                            </div>
+                          </td>
+                        </tr>
+                        {/volist}
+                      </tbody>
+
+                    </table>
+                  </div>
+                  {$page|raw}
+                  <div class="page-total">共 <span>{$total}</span> 条</div>
+                  <div class="clear"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+      <!--End 页面主要内容-->
+    </div>
+  </div>
+  {load href="__MJS__/jquery.min.js" }
+  {load href="__MJS__/bootstrap.min.js" }
+  {load href="__MJS__/perfect-scrollbar.min.js" }
+  {load href="__MJS__/main.min.js" }
+  {load href="__MJS__/operation.ajax.js" /}
+  {load href="__LAYER__/layer.js" /}
+  {load href="__MJS__/jquery.cookie.js" /}
+  {load href="__MJS__/set.systheme.js" /}
+
+  <!--日期选择插件-->
+  {load href="__MJS__/bootstrap-datepicker/bootstrap-datepicker.min.js" /}
+  {load href="__MJS__/bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min.js" /}
+  <script type="text/javascript">
+    $(function () {
+      $('.search-bar .dropdown-menu a').click(function () {
+        var field = $(this).data('field') || '';
+        $('#search-field').val(field);
+        $('#search-btn').html($(this).text() + ' <span class="caret"></span>');
+      });
+
+    });
+  </script>
+</body>
+
+</html>

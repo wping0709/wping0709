@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<theme>
+    <name>标准风格</name>
+    <route>default</route>
+    <author>熊海</author>
+    <website>http://www.imxh.cn</website>
+    <menu>1,2,3,4,5</menu>
+    <images>theme.jpg</images>
+    <explain>这是熊海博客的默认风格</explain>
+    <date>2021-05-17 22:06</date>
+</theme>

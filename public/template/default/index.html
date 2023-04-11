@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="zh-cmn-Hans">
+    <head>
+        <meta charset="utf-8">
+ 		<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
+        <title>{$basic.title}</title>
+        <meta name="keywords" content="{$basic.keywords}" />
+  		<meta name="description" content="{$basic.description}" />
+        <link rel="icon" href="__IMG__/favicon.ico" type="image/png" />
+        {load href="__CSS__/bootstrap.css" /}
+		{load href="__ICO__/icon-style.css" /}
+        {load href="__CSS__/style.css" /}
+    </head>
+    <body>
+        {include file="default/public/header" /} 
+        <section class="blog_area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8">
+                           <div class="section-top-border">
+                           {neq name="$list.top.article" value=''}
+                            <article class="blog_style1">
+                            	<div class="blog_img">
+                            		{eq name="$list.top.article.is_img" value='0'}
+									<div class="img-tag blue">配图</div>
+									{else /}
+									<div class="img-tag indigo">原图</div>
+									{/eq}
+                            		<a href="{:url('/detail/'.$list.top.article.url)}"><img class="img-fluid" src="{$list.top.article.img|default='storage/images/notop.jpg'}" alt="{$list.top.article.title}"></a>
+                            	</div>
+                            	<div class="blog_text">
+									<div class="blog_text_inner">
+										<div class="cat">
+											<a class="cat_btn" href="{:url('/archives/'.$list.top.article.class.pinyin)}">{$list.top.article.class.name}</a>
+											<a><i class="icon shijian" aria-hidden="true"></i> {$list.top.article.time}</a>
+											<a href="{:url('/detail/'.$list.top.article.url)}#comment">
+											<i class="icon liaotian" aria-hidden="true"></i>{$list.top.article.comment}</a>
+											<a><i class="icon chakan" aria-hidden="true"></i> {$list.top.article.click}</a>
+											
+										</div>
+										<a href="{:url('/detail/'.$list.top.article.url)}"><h4>{$list.top.article.title}</h4></a>
+										<p>{$list.top.article.content|msubstr=0,140}</p>
+										<a class="blog_btn" href="{:url('/detail/'.$list.top.article.url)}">阅读全文</a>
+									</div>
+								</div>
+                            </article>
+                            {/neq}
+                            <div class="row">
+                            {volist name="list.basic.article" id="article"}
+                            	<div class="col-md-6">
+                            		<article class="blog_style1 small">
+										<div class="blog_img">
+											{eq name="article.is_img" value='0'}
+											<div class="img-tag blue">配图</div>
+											{else /}
+											<div class="img-tag indigo">原图</div>
+											{/eq}
+											<a href="{:url('/detail/'.$article.url)}" title="{$article.title}"><img class="img-fluid" src="{$article.simg|default='/storage/images/noimg.gif'}" alt="{$article.title}"></a>
+										</div>
+										<div class="blog_text">
+											<div class="blog_text_inner">
+												<div class="cat">
+													<a class="cat_btn" href="{:url('/archives/'.$article.class.pinyin)}">{$article.class.name}</a>
+													<a><i class="icon shijian" aria-hidden="true"></i> {$article.time}</a>
+													
+													<a href="{:url('/detail/'.$article.url)}#comment"><i class="icon liaotian" aria-hidden="true"></i>{$article.comment}</a>
+													
+													<a><i class="icon chakan" aria-hidden="true"></i> {$article.click}</a>
+												</div>
+												<a href="{:url('/detail/'.$article.url)}" title="{$article.title}"><h4>{$article.title|msubstr=0,25}</h4></a>
+												<p>{$article.content|msubstr=0,40}</p>
+												<a class="blog_btn" href="{:url('/detail/'.$article.url)}">阅读全文</a>
+											</div>
+										</div>
+									</article>
+                            	</div>
+     							{/volist}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                     {include file="default/public/sidebar" /} 
+                    </div>
+                </div>
+            </div>
+        </section>
+        <nav class="blog-pagination justify-content-center d-flex"></nav>
+        {include file="default/public/footer" /} 
+        {load href="__JS__/jquery-3.2.1.min.js" /}
+        {load href="__JS__/bootstrap.min.js" /}
+        {load href="__JS__/basic.js" /}
+        {load href="__LAYER__/layer.js" /}
+    </body>
+</html>

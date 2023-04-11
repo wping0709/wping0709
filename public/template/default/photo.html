@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh-cmn-Hans">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
+<title>{$list.album.name} / 相册 - {$basic.name}</title>
+<link rel="icon" href="__IMG__/favicon.ico" type="image/png">
+{load href="__CSS__/bootstrap.css" /}
+{load href="__ICO__/icon-style.css" /}
+{load href="__CSS__/style.css" /}	
+</head>
+<body>
+{include file="default/public/header" /}
+<section class="blog_area">
+                <div class="photo-view">
+					<div class="view">
+					<div class="photo-close" id="close">✕</div>
+					<div class="img">
+					<img id="img"  />
+					</div>
+				   <div class="img-info">
+				   
+				   	<div class="title">
+				    <div id="title"></div>
+					<span id="time"></span>
+		   			</div>
+		   			
+				   <div class="up" id="up"><</div>
+				   <div class="down" id="down">></div>
+				   </div>
+				   
+
+				   
+				   </div>
+                </div>
+         
+          <div class="container">
+    		<div class="row">
+              <div class="col-lg-12">
+        		<div class="section-top-border">
+                  <div class="row gallery-item">
+                {volist name="$list.album.photo" id="photo"}
+            	<div class="col-md-4"> 
+            	<a class="img-gal">
+                <div class="single-gallery-image" style="background: url({$photo.img});" data-img="{$photo.img}" data-explain="{$photo.explain}" data-time="{$photo.time}">
+                </div>
+                </a> 
+              </div>
+              <img src="{$photo.img}" alt="{$photo.explain}" class="hide" />
+			 {/volist}
+
+          </div>
+                </div>      
+      </div>
+            </div>
+  </div>
+        </section>
+<nav class="blog-pagination justify-content-center d-flex"></nav>
+{include file="default/public/footer" /} 
+        {load href="__JS__/jquery-3.2.1.min.js" /}
+        {load href="__JS__/bootstrap.min.js" /}
+        {load href="__JS__/basic.js" /}
+        {load href="__LAYER__/layer.js" /}
+</body>
+</html>

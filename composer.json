@@ -1,0 +1,6 @@
+{
+    "require": {
+        "spatie/simple-excel": "1.13.*",
+        "jaeger/querylist": "^4.2"
+    }
+}

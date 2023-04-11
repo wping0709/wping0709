@@ -1,0 +1,50 @@
+<header class="header_area">
+  <div class="main_menu">
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <div class="container box_1620">
+        <div class="logo navbar-brand"> <a href="{:url('/')}">
+          <h>{$basic.name}</h>
+          <span>|</span>
+          <t>Personal Blog</t>
+          </a> </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+        <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+          <ul class="nav navbar-nav menu_nav">
+            
+            {volist name="view.menu" id="menu"}
+            <li class="nav-item {eq name="menu.type" value="3"}submenu dropdown {/eq} {eq name="$nav" value="$menu.pinyin"}active{/eq}">
+            <a href="{:url('/'.$menu.pinyin)}" class="nav-link {eq name="menu.type" value="3"}dropdown-toggle{/eq}" {eq name="menu.type" value="3"}data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"{/eq}>
+            {$menu.name}</a> 
+            
+            {eq name="menu.type" value='3'}
+            <ul class="dropdown-menu">
+              <li class="nav-item"><a class="nav-link" href="{:Url('/'.$menu.pinyin)}">全部</a></li>
+              {volist name="$view.class" id="class"}
+              <li class="nav-item"><a class="nav-link" href="{:Url('/'.$menu.pinyin.'/'.$class.pinyin)}">{$class.name}</a></li>
+              {/volist}
+            </ul>
+            {/eq}
+            
+            </li>
+            {/volist}
+            
+          </ul>
+          <ul class="nav navbar-nav navbar-right header_social ml-auto">
+            <li class="nav-item"><a href="#" ><i class="icon weixin"></i></a></li>
+            <li class="nav-item"><a href="#" title="QQ: {$basic.qq}"><i class="icon qq"></i></a></li>
+            <li class="nav-item"><a href="{:url('/sitemap')}" title="sitemap" target="_blank"><i class="icon weibo1"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <div class="logo_part">
+    <div class="container">
+      <div class="logo"> <a href="{:url('/')}">
+        <h>{$basic.name}</h>
+        <span>|</span>
+        <t>Personal Blog</t>
+        </a> </div>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-cmn-Hans">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
+<title>标签：{$keywords} - {$basic.name}</title>
+<link rel="icon" href="__IMG__/favicon.ico" type="image/png">
+{load href="__CSS__/bootstrap.css" /}
+{load href="__ICO__/icon-style.css" /}
+{load href="__CSS__/style.css" /}
+</head>
+<body>
+{include file="default/public/header" /}
+<section class="blog_area">
+          <div class="container">
+    <div class="row">
+              <div class="col-lg-12">
+        <div class="section-top-border">
+                  <h6 class="mb-20">以 "{$keywords}" 为关键字,共计 {$total} 篇文章</h6>
+                  <div class="row"> {volist name="$list.search" id="search"}
+            <div class="col-md-4">
+                      <article class="blog_style1 small">
+                <div class="blog_img">
+                 
+                {eq name="search.is_img" value='0'}
+                <div class="img-tag blue">配图</div>
+                {else /}
+                <div class="img-tag indigo">原图</div>
+                {/eq}
+                
+                <a href="{:url('/detail/'.$search.url)}">
+                <img class="img-fluid" src="{$search.simg|default='/storage/images/noimg.gif'}" alt="{$search.title}">
+                </a>
+				</div>
+                <div class="blog_text">
+                          <div class="blog_text_inner">
+                    <div class="cat"> <a class="cat_btn" href="{:url('/archives/'.$search.class.pinyin)}">{$search.class.name}</a> <a><i class="icon shijian" aria-hidden="true"></i> {$search.time}</a> <a href="{:url('/detail/'.$search.url)}#comment"><i class="icon liaotian" aria-hidden="true"></i> {$search.comment}</a> </div>
+                    <a href="{:url('/detail/'.$search.url)}">
+                            <h4>{$search.title|msubstr=0,15}</h4>
+                            </a>
+                    <p>{$search.content|msubstr=0,50}</p>
+                    <a class="blog_btn" href="{:url('/detail/'.$search.url)}">阅读全文</a> </div>
+                        </div>
+              </article>
+                    </div>
+            {/volist} </div>
+                  <nav class="blog-pagination justify-content-center d-flex">
+            <div class="page-view"> {$page|raw} </div>
+          </nav>
+                </div>
+      </div>
+              
+            </div>
+  </div>
+        </section>
+<nav class="blog-pagination justify-content-center d-flex"></nav>
+{include file="default/public/footer" /} 
+      	{load href="__JS__/jquery-3.2.1.min.js" /}
+      	{load href="__JS__/bootstrap.min.js" /}
+        {load href="__JS__/basic.js" /}
+        {load href="__LAYER__/layer.js" /}
+</body>
+</html>

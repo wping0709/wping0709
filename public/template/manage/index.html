@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>控制台 - {$basic.name}</title>
+  <link rel="icon" href="/storage/images/favicon.ico" type="image/ico" />
+  {load href="__MCSS__/bootstrap.min.css" }
+  {load href="__MCSS__/materialdesignicons.min.css" }
+  {load href="__MCSS__/style.min.css" }
+</head>
+
+<body>
+  <div class="lyear-layout-web">
+    <div class="lyear-layout-container">
+      {include file="/manage/public/sidebar" /}
+      {include file="/manage/public/header" /}
+      <!--页面主要内容-->
+      <main class="lyear-layout-content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-sm-6 col-lg-3">
+              <div class="card bg-primary">
+                <div class="card-body clearfix">
+                  <div class="pull-right">
+                    <p class="h6 text-white m-t-0">文章数量</p>
+                    <p class="h3 text-white m-b-0">{$list.data.article}</p>
+                  </div>
+                  <div class="pull-left"> <span class="img-avatar img-avatar-48 bg-translucent"><i
+                        class="mdi mdi-content-paste fa-1-5x"></i></span> </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+              <div class="card bg-danger">
+                <div class="card-body clearfix">
+                  <div class="pull-right">
+                    <p class="h6 text-white m-t-0">总点击量</p>
+                    <p class="h3 text-white m-b-0">{$list.data.click}</p>
+                  </div>
+                  <div class="pull-left"> <span class="img-avatar img-avatar-48 bg-translucent">
+                      <i class="mdi mdi-readability fa-1-5x"></i>
+                    </span> </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+              <div class="card bg-success">
+                <div class="card-body clearfix">
+                  <div class="pull-right">
+                    <p class="h6 text-white m-t-0">互动数量</p>
+                    <p class="h3 text-white m-b-0">{$list.data.guestbook}</p>
+                  </div>
+                  <div class="pull-left"> <span class="img-avatar img-avatar-48 bg-translucent">
+                      <i class="mdi mdi-comment-outline fa-1-5x"></i>
+                    </span> </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+              <div class="card bg-purple">
+                <div class="card-body clearfix">
+                  <div class="pull-right">
+                    <p class="h6 text-white m-t-0">待回复</p>
+                    <p class="h3 text-white m-b-0">{$list.data.reply}</p>
+                  </div>
+                  <div class="pull-left"> <span class="img-avatar img-avatar-48 bg-translucent"><i
+                        class="mdi mdi-reply fa-1-5x"></i></span> </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="card">
+                <div class="card-header">
+                  <h4>文章发布</h4>
+                </div>
+                <div class="card-body">
+                  <canvas class="js-chartjs-bars"></canvas>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="card">
+                <div class="card-header">
+                  <h4>评论发布</h4>
+                </div>
+                <div class="card-body">
+                  <canvas class="js-chartjs-lines"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="card">
+                <div class="card-header">
+                  <h4>最新互动</h4>
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th>ID</th>
+                          <th>昵称</th>
+                          <th>类型</th>
+                          <th>评论</th>
+                          <th>时间</th>
+                          <th>操作</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {volist name="list.show.guestbook" id="guestbook"}
+                        <tr>
+                          <td>{$guestbook.id}</td>
+                          <td>{$guestbook.name}</td>
+                          <td>{$guestbook.type}</td>
+                          <td>{$guestbook.content||msubstr=0,20}</td>
+                          <td>{$guestbook.time|date='Y-m-d H:i:s'}</td>
+                          <td>
+                            <div class="btn-group"> <a class="btn btn-xs btn-default operation"
+                                url="{:url('/manage/reply/id/'.$guestbook.id)}" imp="newpage" size="" title="回复"
+                                data-toggle="tooltip"><i class="mdi mdi-reply"></i></a>
+                            </div>
+                          </td>
+                        </tr>
+                        {/volist}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+      <!--End 页面主要内容-->
+    </div>
+  </div>
+
+  {load href="__MJS__/jquery.min.js" }
+  {load href="__MJS__/bootstrap.min.js" }
+  {load href="__MJS__/perfect-scrollbar.min.js" }
+  {load href="__MJS__/main.min.js" }
+  {load href="__MJS__/operation.ajax.js" /}
+  {load href="__MJS__/Chart.js" }
+  {load href="__LAYER__/layer.js" /}
+  {load href="__MJS__/jquery.cookie.js" /}
+  {load href="__MJS__/set.systheme.js" /}
+
+  <!--图表插件-->
+  <script type="text/javascript">
+    $(document).ready(function (e) {
+      var $dashChartBarsCnt = jQuery('.js-chartjs-bars')[0].getContext('2d'),
+        $dashChartLinesCnt = jQuery('.js-chartjs-lines')[0].getContext('2d');
+
+      var $dashChartBarsData = {
+        labels: { $list.d.all.days | raw },
+        datasets: [
+          {
+            label: '文章数量',
+            borderWidth: 1,
+            borderColor: 'rgba(0,0,0,0)',
+            backgroundColor: 'rgba(51,202,185,0.5)',
+            hoverBackgroundColor: "rgba(51,202,185,0.7)",
+            hoverBorderColor: "rgba(0,0,0,0)",
+            data: { $list.d.article.data }
+          }
+        ]
+      };
+      var $dashChartLinesData = {
+        labels: { $list.d.all.days | raw },
+        datasets: [
+          {
+            label: '互动数量',
+            data: { $list.d.guestbook.data },
+            borderColor: '#358ed7',
+            backgroundColor: 'rgba(53, 142, 215, 0.175)',
+            borderWidth: 1,
+            fill: false,
+            lineTension: 0.5
+          }
+        ]
+      };
+
+      new Chart($dashChartBarsCnt, {
+        type: 'bar',
+        data: $dashChartBarsData
+      });
+
+      var myLineChart = new Chart($dashChartLinesCnt, {
+        type: 'line',
+        data: $dashChartLinesData,
+      });
+    });
+  </script>
+</body>
+
+</html>

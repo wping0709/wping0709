@@ -1,0 +1,65 @@
+<!--左侧导航-->
+
+<aside class="lyear-layout-sidebar"> 
+  
+  <!-- logo -->
+  <div id="logo" class="sidebar-header"> <a href="{:Url('/manage/index')}"><img src="__MIMG__/logo.png" title="{$basic.name}" alt="熊海博客 3.0" />
+    <h2>熊海博客</h2>
+    </a> </div>
+  <div class="lyear-layout-sidebar-scroll">
+    <nav class="sidebar-main">
+      <ul class="nav nav-drawer">
+        <li class="nav-item {eq name="$nav" value="index"}active{/eq}"> <a href="{:Url('/manage/index')}"><i class="mdi mdi-home"></i> 系统首页</a> </li>
+        <li class="nav-item nav-item-has-subnav {in name="$nav" value="article,classify"}active open{/in}"> <a href="javascript:void(0)"><i class="mdi mdi-content-paste"></i> 文章管理</a>
+          <ul class="nav nav-subnav">
+           <li {eq name="$nav" value="classify"}class="active"{/eq}> <a href="{:Url('/manage/classify')}">文章分类</a> </li>
+           <li {eq name="$nav" value="article"}class="active"{/eq}> <a href="{:Url('/manage/article')}">文章列表</a> </li>
+          </ul>
+        </li>
+     
+        <li class="nav-item nav-item-has-subnav {in name="$nav" value="album,photo"}active open{/in}"> <a href="javascript:void(0)"><i class="mdi mdi-image-filter"></i> 相册管理</a>
+          <ul class="nav nav-subnav">
+            <li {eq name="$nav" value="album"}class="active"{/eq}> <a href="{:Url('/manage/album')}">相册列表</a> </li>
+            <li {eq name="$nav" value="photo"}class="active"{/eq}> <a href="{:Url('/manage/photo')}">图片列表</a> </li>
+          </ul>
+        </li>
+   
+        <li class="nav-item nav-item-has-subnav {in name="$nav" value="link"}active open{/in}"> <a href="javascript:void(0)"><i class="mdi mdi-link"></i> 链接管理</a>
+          <ul class="nav nav-subnav">
+            <li {eq name="$nav" value="user"}class="active"{/eq}> <a href="{:Url('/manage/link')}">链接列表</a> </li>
+          </ul>
+        </li>
+        
+        <li class="nav-item nav-item-has-subnav  {in name="$nav" value="comment,guestbook"}active open{/in}"> <a href="javascript:void(0)"><i class="mdi mdi-comment-processing-outline"></i> 互动管理</a>
+          <ul class="nav nav-subnav">
+            <li {eq name="$nav" value="comment"}class="active"{/eq}> <a href="{:Url('/manage/comment')}">评论列表</a> </li>
+            <li {eq name="$nav" value="guestbook"}class="active"{/eq}> <a href="{:Url('/manage/guestbook')}">留言列表</a> </li>
+          </ul>
+        </li>
+        
+        <li class="nav-item nav-item-has-subnav  {in name="$nav" value="menu"}active open{/in}"> <a href="javascript:void(0)"><i class="mdi mdi-menu"></i> 菜单管理</a>
+          <ul class="nav nav-subnav">
+            <li {eq name="$nav" value="menu"}class="active"{/eq}> <a href="{:Url('/manage/menu')}">菜单列表</a> </li>
+          </ul>
+        </li>
+        
+        <li class="nav-item nav-item-has-subnav  {in name="$nav" value="basicsetting,advanced,material,theme"}active open{/in}"> <a href="javascript:void(0)"><i class="mdi mdi-settings"></i> 系统设置</a>
+          <ul class="nav nav-subnav">
+           <li {eq name="$nav" value="basicsetting"}class="active"{/eq}> <a href="{:Url('/manage/basicsetting')}">基本配置</a> </li>
+           <li {eq name="$nav" value="advanced"}class="active"{/eq}> <a href="{:Url('/manage/advanced')}">高级配置</a> </li>
+           <li {eq name="$nav" value="material"}class="active"{/eq}> <a href="{:Url('/manage/material')}">素材列表</a> </li>
+           <li {eq name="$nav" value="theme"}class="active"{/eq}> <a href="{:Url('/manage/theme')}">主题列表</a> </li>
+          </ul>
+        </li>
+        
+
+        
+        <li class="nav-item"> <a href="{:Url('/manage/logout')}"><i class="mdi mdi-logout"></i> 安全退出</a> </li>
+      </ul>
+    </nav>
+    <div class="sidebar-footer">
+      <p class="copyright">{$basic.copyright}</p>
+    </div>
+  </div>
+</aside>
+<!--End 左侧导航-->

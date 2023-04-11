@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>高级设置 - {$basic.name}</title>
+  <link rel="icon" href="/storage/images/favicon.ico" type="image/ico" />
+  {load href="__MCSS__/bootstrap.min.css" }
+  {load href="__MCSS__/materialdesignicons.min.css" }
+  {load href="__MCSS__/style.min.css" }
+</head>
+
+<body>
+  <div class="lyear-layout-web">
+    <div class="lyear-layout-container">
+      {include file="/manage/public/sidebar" /}
+      {include file="/manage/public/header" /}
+      <!--页面主要内容-->
+      <main class="lyear-layout-content">
+
+        <div class="container-fluid">
+
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="card">
+                <ul class="nav nav-tabs page-tabs">
+                  <li class="active"> <a>高级配置</a> </li>
+                </ul>
+                <div class="tab-content">
+                  <div class="tab-pane active">
+
+                    <form name="edit-form" class="edit-form" method="post">
+                      <div class="form-group">
+                        <label class="checkbox-inline" for="example-inline-checkbox2">
+                          <input name="shenhe_switch" type="checkbox" value="1" {eq name='$list.advanced.shenhe_switch'
+                            value='1' }checked{/eq}>
+                          互动审核
+                        </label>
+                        <label class="checkbox-inline" for="example-inline-checkbox3">
+                          <input name="pinlun_switch" type="checkbox" value="1" {eq name='$list.advanced.pinlun_switch'
+                            value='1' }checked{/eq}>
+                          评论通知
+                        </label>
+                        <label class="checkbox-inline" for="example-inline-checkbox3">
+                          <input name="liuyan_switch" type="checkbox" value="1" {eq name='$list.advanced.liuyan_switch'
+                            value='1' }checked{/eq}>
+                          留言通知
+                        </label>
+                      </div>
+
+
+
+                      <div class="form-group">
+                        <label for="web_site_title">Smtp</label>
+                        <input class="form-control" type="text" name="smtp" value="{$list.advanced.smtp}"
+                          placeholder="Smtp服务器的地址">
+                      </div>
+
+                      <div class="form-group">
+                        <label for="web_site_title">帐号</label>
+                        <input class="form-control" type="text" name="username" value="{$list.advanced.username}"
+                          placeholder="Smtp服务器的帐号">
+                      </div>
+
+                      <div class="form-group">
+                        <label for="web_site_keywords">密码</label>
+                        <input class="form-control" type="password" name="password" value="{$list.advanced.password}"
+                          placeholder="Smtp服务器的密码">
+                      </div>
+
+                      <div class="form-group">
+                        <label for="web_site_title">类型</label>
+                        <input class="form-control" type="text" name="smtpsecure" value="{$list.advanced.smtpsecure}"
+                          placeholder="Smtp服务器的类型">
+                      </div>
+
+                      <div class="form-group">
+                        <label for="web_site_title">端口</label>
+                        <input class="form-control" type="text" name="port" value="{$list.advanced.port}"
+                          placeholder="Smtp服务器的端口">
+                      </div>
+
+                      <div class="form-group">
+                        <label for="web_site_title">发件人名称</label>
+                        <input class="form-control" type="text" name="sendname" value="{$list.advanced.sendname}"
+                          placeholder="邮件发送人的发件人名称">
+                      </div>
+
+                      <div class="form-group">
+                        <label for="web_site_title">发件人邮箱</label>
+                        <input class="form-control" type="text" name="sendemail" value="{$list.advanced.sendemail}"
+                          placeholder="邮件发送人的邮箱地址">
+                      </div>
+
+                      <div class="form-group">
+                        <label for="web_site_title">回复名称</label>
+                        <input class="form-control" type="text" name="replyename" value="{$list.advanced.replyename}"
+                          placeholder="收件人回复的名称">
+                      </div>
+
+                      <div class="form-group">
+                        <label for="web_site_title">回复邮箱</label>
+                        <input class="form-control" type="text" name="replyemail" value="{$list.advanced.replyemail}"
+                          placeholder="收件人回复的邮箱地址">
+                      </div>
+
+                      <div class="form-group">
+                        <label for="web_site_title">通知名称</label>
+                        <input class="form-control" type="text" name="noticename" value="{$list.advanced.noticename}"
+                          placeholder="新的互动通知邮箱的名称">
+                      </div>
+
+                      <div class="form-group">
+                        <label for="web_site_title">通知邮箱</label>
+                        <input class="form-control" type="text" name="noticeemail" value="{$list.advanced.noticeemail}"
+                          placeholder="新的互动通知接收的邮箱">
+                      </div>
+
+                      <div class="form-group">
+                        <button type="button" class="btn btn-primary m-r-5" id="save-data">确 定</button>
+                        <button type="button" class="btn btn-default"
+                          onclick="javascript:history.back(-1);return false;">返 回</button>
+                      </div>
+                    </form>
+
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </main>
+      <!--End 页面主要内容-->
+    </div>
+  </div>
+
+  {load href="__MJS__/jquery.min.js" }
+  {load href="__MJS__/bootstrap.min.js" }
+  {load href="__MJS__/perfect-scrollbar.min.js" }
+  {load href="__MJS__/main.min.js" }
+  {load href="__MJS__/operation.ajax.js" }
+  {load href="__LAYER__/layer.js" /}
+  {load href="__MJS__/jquery.cookie.js" /}
+  {load href="__MJS__/set.systheme.js" /}
+
+</body>
+
+</html>

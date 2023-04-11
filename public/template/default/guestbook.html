@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="zh-cmn-Hans">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
+<title>留言 - {$basic.name}</title>
+<link rel="icon" href="__IMG__/favicon.ico" type="image/png">
+{load href="__CSS__/bootstrap.css" /}
+{load href="__ICO__/icon-style.css" /}
+{load href="__CSS__/style.css" /}
+</head>
+<body>
+{include file="default/public/header" /}
+<section class="blog_area">
+          <div class="container">
+    <div class="row">
+	 <div class="col-lg-8">
+ 
+        
+        <div class="comment-list">
+        <h5 id="comment">共 <span>{$total}</span> 条留言</h5>
+         {volist name="$list.comment" id="comment"}
+        <div class="comment-info">
+        <div class="msg">
+        <div class="link" id="{$comment.id}">#{$comment.id}</div>
+        
+        {eq name="comment.url" value=""} <img src="{$comment.portrait}"> {else /} <a href="{$comment.url}" target="_blank" rel="nofollow"><img src="{$comment.portrait}"></a> {/eq}
+        
+       	<div class="umsg">
+				<div class="u-info">
+				<a>{$comment.name}</a>
+				<div class="more">
+				<span><i class="icon dingwei"></i>{$comment.ip}</span>
+				<span><i class="icon shijian"></i>{$comment.time} </span>
+				</div>
+				</div>
+      	</div>
+       		<div class="comment">{$comment.content}</div>
+       	</div>	
+       	{eq name="comment.star" value="1"}
+        <div class="reply-info">
+        <div class="left-in">
+        <img src="{$basic.author_img}">
+       	<div class="umsg">
+				<div class="u-info">
+				<a>{$basic.author}</a>
+				<div class="more">
+				<span><i class="icon shijian"></i>{$comment.replytime}</span>
+				</div>
+				</div>
+      	</div>
+       		<div class="comment">{$comment.reply}</div>
+         </div>
+         </div>
+         {/eq}
+        </div>
+        {/volist}
+
+              <nav class="blog-pagination justify-content-center d-flex">
+              <div class="page-view"> {$page|raw} </div>
+              </nav>
+         </div>
+        <div class="comment-form" id="go">
+                  <h4>留言</h4>
+                  <form id="form">
+            <input name="aid" type="hidden" value="0">
+            <input name="up" type="hidden" value="0" id="up-id">
+            <input name="type" type="hidden" value="1" >
+            <div class="form-group form-inline">
+               <div class="form-group col-lg-6 col-md-6 name">
+                <input type="text" class="form-control" id="name" name="name" placeholder="昵称" onfocus="this.placeholder = ''" onblur="this.placeholder = '请输入昵称[必填]'" value="{$Request.cookie.name}">
+              </div>
+                      <div class="form-group col-lg-6 col-md-6 email">
+                <input type="email" class="form-control" id="email" name="email" placeholder="邮箱" onfocus="this.placeholder = ''" onblur="this.placeholder = '请输入邮箱[必填]'"  value="{$Request.cookie.email}">
+              </div>
+                    </div>
+            <div class="form-group">
+                      <input type="text" class="form-control" id="subject" name="url" placeholder="网站" onfocus="this.placeholder = ''" onblur="this.placeholder = '请输入网址[选填]'"  value="{$Request.cookie.url}">
+                    </div>
+            <div class="form-group">
+                      <textarea class="form-control mb-10" rows="5" name="content" placeholder="说点什么吧？" onfocus="this.placeholder = ''" onblur="this.placeholder = '请输入您想说的话'" required></textarea>
+                    </div>
+            <a href="javascript:;" class="primary-btn submit_btn" id="send-data" >发送</a>
+          </form>
+                </div>
+ 
+             </div>
+              <div class="col-lg-4"> {include file="default/public/sidebar" /} </div>
+            </div>
+  </div>
+        </section>
+<nav class="blog-pagination justify-content-center d-flex"></nav>
+{include file="default/public/footer" /} 
+      {load href="__JS__/jquery-3.2.1.min.js" /}
+       {load href="__JS__/bootstrap.min.js" /}
+        {load href="__JS__/basic.js" /}
+        {load href="__LAYER__/layer.js" /}
+</body>
+</html>
