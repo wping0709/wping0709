@@ -403,4 +403,48 @@ class Index{
         get_sitemap('http://'.$url,$map);
         header("Location: /sitemap.xml");
     }
+    public function chat()
+    {
+        // echo 'chat';
+        // 设置请求参数
+        $api_key = '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';
+        $model = 'image-alpha-001';
+        $prompt = 'A happy panda';
+
+        // 设置 API 请求 URL
+        $url = 'https://api.openai.com/v1/images/generations';
+
+        // 设置 API 请求头
+        $headers = array(
+            'Content-Type: application/json',
+            'Authorization: Bearer ' . $api_key
+        );
+
+        // 设置 API 请求体
+        $data = array(
+            'model' => $model,
+            'prompt' => $prompt,
+            'num_images' => 1,
+            'size' => '256x256',
+            'response_format' => 'url'
+        );
+
+        // 发送 API 请求
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $response = curl_exec($ch);
+        curl_close($ch);
+
+        // 解析 API 响应
+        $response_data = json_decode($response, true);
+        $image_url = $response_data['data'][0]['url'];
+
+        // 下载图片并保存为文件
+        $image_data = file_get_contents($image_url);
+        file_put_contents('generated_image.png', $image_data);
+    }
 }
